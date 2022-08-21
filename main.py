@@ -16,10 +16,11 @@ parameters = {
 response = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=parameters)
 response.raise_for_status()
 data = response.json()
-print(data["hourly"][0]["weather"][0]["id"])
-print(len(data["hourly"][0]["weather"]))
+# print(data["hourly"][0]["weather"][0]["id"])
+print(data["hourly"][0]["weather"])
+print(data["hourly"][:12])
 
-for value in range(0, len(data["hourly"])):
+for value in range(0, len(data["hourly"][:12])):
     if data["hourly"][value]["weather"][0]["id"] < 700:
         print(data["hourly"][value]["weather"][0]["id"])
         print("It's about to rain in your city.\nBring your umbrella.")
